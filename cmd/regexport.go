@@ -2,13 +2,15 @@ package cmd
 
 import (
 	"encoding/csv"
+	"log"
 	"os"
 	"regexp"
 )
 
 func check(err error) {
 	if err != nil {
-		panic(err)
+		log.Println(err)
+		os.Exit(1)
 	}
 }
 

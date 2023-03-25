@@ -1,5 +1,5 @@
 /*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
+Copyright © 2023 Natsuki Kirigakure <natsuki@kirigakure.net>
 */
 package main
 

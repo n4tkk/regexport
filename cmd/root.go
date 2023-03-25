@@ -1,5 +1,5 @@
 /*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
+Copyright © 2023 Natsuki Kirigakure <natsuki@kirigakure.net>
 */
 package cmd
 
@@ -8,20 +8,21 @@ import (
 	"os"
 )
 
+var (
+	regexpPattern string
+	inputFile     string
+	outputFile    = "result.csv"
+)
+
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "regexport",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "regexport is a tool to export csv from a file using a regular expression.",
+	Long:  `regexport is a tool to export csv from a file using a regular expression.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
-		Regex(args[0], args[1], args[2])
+		Regex(regexpPattern, inputFile, outputFile)
 	},
 }
 
@@ -40,8 +41,17 @@ func init() {
 	// will be global for your application.
 
 	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.regexport.yaml)")
+	rootCmd.PersistentFlags().StringVarP(&regexpPattern, "pattern", "p", "", "regular expression pattern")
+	rootCmd.PersistentFlags().StringVarP(&inputFile, "input", "i", "", "input file")
+	rootCmd.PersistentFlags().StringVarP(&outputFile, "output", "o", "result.csv", "output file")
+
+	check(rootCmd.MarkPersistentFlagFilename("input"))
+	check(rootCmd.MarkPersistentFlagFilename("output"))
+
+	check(rootCmd.MarkPersistentFlagRequired("pattern"))
+	check(rootCmd.MarkPersistentFlagRequired("input"))
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.Flags().BoolP("verbose", "v", false, "verbose output")
 }
