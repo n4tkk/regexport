@@ -2,17 +2,9 @@ package cmd
 
 import (
 	"encoding/csv"
-	"log"
 	"os"
 	"regexp"
 )
-
-func check(err error) {
-	if err != nil {
-		log.Println(err)
-		os.Exit(1)
-	}
-}
 
 func Regex(pattern, input, output string) {
 	data, err := os.ReadFile(input)
