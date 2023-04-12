@@ -1,3 +1,3 @@
 # regexport
 
-regexport is a tool to export Windows Registry files to JSON.
+regexport is a tool to export CSV from TextFile.
